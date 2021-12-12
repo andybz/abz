@@ -69,7 +69,7 @@ export default {
 					'!node_modules',
 					'!.git',
 				],
-				proxy: 'https://starter.boost',
+				proxy: 'https://andybz.boost',
 			}),
 	],
 }

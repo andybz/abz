@@ -17,4 +17,3 @@ require_once( 'library/svg-includes.php' );
 
 // Custom Post Types (CPTs)
 require_once( 'cpt/cpt-team.php' );
-require_once( 'cpt/cpt-locations.php' );
