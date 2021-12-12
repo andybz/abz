@@ -24,23 +24,6 @@
             'theme_location' => 'Primary Navigation'
           ) );
         ?>
-        <div class="navbar-login">
-          <?php if (is_user_logged_in()) { ?>
-          <p>Account</p>
-          <?php } else { ?>
-          <p>Log In</p>
-          <?php } ?>
-          <a href="/my-account/" id="login"><span class="sr-only">Account Log In</span></a>
-        </div>
-
-        <?php $cart_count = WC()->cart->get_cart_contents_count();?>
-        <div class="navbar-cart">
-          <span class="cart-count" id="cart_count"><?php echo $cart_count ?></span>
-          <a href="/cart/">
-            <span class="sr-only">View Cart</span>
-            <?php insert_svg('cart') ?>
-          </a>
-        </div>
 
       </nav>
     </div>
