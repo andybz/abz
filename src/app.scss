@@ -1,0 +1,30 @@
+$font-stack: 'Open Sans', sans-serif;
+$font-color: #555;
+$color-primary: #f27d23;
+
+// mixins
+@mixin fillall() {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+@import 'styles/util.scss';
+@import 'styles/reset.scss';
+@import 'styles/gravityforms.scss';
+@import 'styles/woocommerce.scss';
+@import 'styles/default-block-stuff.scss';
+@import 'styles/pagination.scss';
+@import 'styles/popup';
+@import 'styles/archive.scss';
+@import 'styles/single.scss';
+@import 'styles/animations.scss';
+@import 'styles/contact.scss';
+@import 'styles/team.scss';
+@import 'styles/locations';
+@import 'styles/menu.scss';
+@import 'styles/components.scss';
+@import 'style.scss';
+@import 'media-queries.scss';

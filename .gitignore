@@ -1,0 +1,16 @@
+node_modules
+.data
+build
+wp-content
+vendor
+*.log
+.idea
+packaged
+debug.txt
+.DS_Store
+tmp
+pnpm-lock.yaml
+
+library/utils.php
+library/setup.json
+src/components/transitions.js
