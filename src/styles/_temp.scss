@@ -71,9 +71,13 @@ h2 {
     font-size: 18px;
     padding: 1rem 3rem;
     border-radius: 5px;
+    pointer-events: auto;
     &:hover { 
         background-color: rgba(0,0,0,.4);
     }
+}
+a { 
+    pointer-events: auto;
 }
 
 @media (max-width: 520px) {
