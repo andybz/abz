@@ -36,6 +36,11 @@ body {
         }
     }
 }
+.text-content {
+    text-align: center;
+    overflow: hidden;
+    opacity: 0;
+  }
 h2 { 
     font-weight: 300;
     font-size: 30px;
@@ -52,4 +57,13 @@ h2 {
     &:hover { 
         background-color: rgba(0,0,0,.4);
     }
+}
+
+@media (max-width: 520px) {
+
+	h2 {
+		font-size: 16px;
+		letter-spacing: 0px;
+	}
+    .btn { font-size: 15px; }
 }

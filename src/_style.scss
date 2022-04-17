@@ -571,7 +571,7 @@ footer {
 	flex-shrink: 0;
 	flex-direction: column;
 	display: flex;
-	margin-top: 1rem;
+	margin-top: 2rem;
 }
 
 .social-icon {
@@ -584,7 +584,7 @@ footer {
 	display: inline-block;
 	margin: 0 2px;
 	transition: all 0.2s;
-	fill: $color-primary;
+	fill: #FFF;
 	border-radius: 100%;
 	opacity: 0.85;
 
