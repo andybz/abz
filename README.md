@@ -1,6 +1,8 @@
 # Boost Starter Theme :rocket:
 
-It's a starter theme for wordpress development. Supports Svelte by default.
+It's a slim starter theme for wordpress development. Supports Svelte by default.
+
+(Excludes Woocommerce, My Account Functionality, & More)
 
 ### Install / update pnpm
 

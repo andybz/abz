@@ -10,7 +10,7 @@
   <style>
   @media screen and (max-width: 600px) {
     #wpadminbar {
-      position:fixed !important;
+      position: fixed !important;
     }
   }
   </style>
@@ -60,13 +60,13 @@
           </li>
           <?php } ?>
           <?php if ($address_line_one = $option_fields['address_line_one']) { ?>
-            <li class="mm-address">
+          <li class="mm-address">
             <?php
               $address_line_two = $option_fields['address_line_two']
             ?>
-              <a href="https://www.google.com/maps?saddr=My+Location&daddr=<?php echo $address_line_one . $address_line_two ?>" target="_blank" rel="noopener noreferrer">
-                <?php echo "<p>$address_line_one<br>$address_line_two</p>" ?>
-              </a>
+            <a href="https://www.google.com/maps?saddr=My+Location&daddr=<?php echo $address_line_one . $address_line_two ?>" target="_blank" rel="noopener noreferrer">
+              <?php echo "<p>$address_line_one<br>$address_line_two</p>" ?>
+            </a>
           </li>
           <?php } ?>
         </ul>

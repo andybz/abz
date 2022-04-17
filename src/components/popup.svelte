@@ -19,6 +19,7 @@
 	function hideModal() {
 		cache.set('hide', true)
 		showModal = false
+		document.documentElement.style.overflowY = 'visible'
 	}
 
 	function onMount(node) {
@@ -29,15 +30,7 @@
 			a.addEventListener('click', hideModal)
 		}
 
-		console.log(options)
-		let recaptcha1 = document.querySelector('.popup-wrap .ginput_recaptcha')
-		// if(recaptcha1)
-		// 	grecaptcha.render(recaptcha1,{
-		// 		sitekey: options.gfKey,
-		// 		theme: "light",
-		// 	})
-
-		document.body.style.overflowY = 'hidden'
+		document.documentElement.style.overflowY = 'hidden'
 	}
 
 	setTimeout(() => {
@@ -53,6 +46,7 @@
 	<Modal
 		on:close={hideModal}
 		width={options.width ? options.width : 600}
+		backgroundColor={options.colors.pu_background_color}
 		{closeBtnColor}>
 		<div class="popup-wrap" use:onMount>
 			{#if options.logo && options.logo.image}

@@ -32,10 +32,10 @@
 	.alignleft {
 		max-width: calc(100% - 180px);
 	}
-}
-
-// hover state for image enlarge
-.wp-block-image {
+	&:not(.no-bp) {
+		cursor: pointer;
+	}
+	// hover state for image enlarge
 	a[href*='.jpg'] {
 		&:hover {
 			img {
@@ -136,15 +136,15 @@
 
 .wp-block-media-text {
 	margin: 2rem 0;
+	&:not(.no-bp) {
+		img {
+			cursor: pointer;
+		}
+	}
 }
 
 .wp-block-gallery {
 	margin: 2rem 0;
-	li {
-		&:last-child {
-			margin: 0;
-		}
-	}
 }
 
 .wp-block-pullquote {

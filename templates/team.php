@@ -18,7 +18,7 @@ get_header(); ?>
 <main id="main_content" class="main-content-wrap">
   <div class='main'>
     <div class='inner-wrap'>
-      
+
       <section class="team-section">
         <div class="team-wrap grid-four">
           <?php foreach ($team_members as $member) { 
@@ -32,15 +32,15 @@ get_header(); ?>
                 'title' => $title
               ];
           ?>
-            <div class="team-item grid-item" data-member="<?php echo json_encode($data_obj) ?>">
-              <div class="team-item-image" style="background-image: url(<?php echo $featured_image ? $featured_image : gid() . '/placeholder.jpg' ?>)"></div>
-              <div class="team-item-content">
-                <h2><?php echo $member->post_title ?></h2>
-                <?php if ($title) { ?>
-                  <p><?php echo $title ?></p>
-                <?php } ?>
-              </div>
+          <div class="team-item grid-item" data-member="<?php echo data_attribute($data_obj) ?>">
+            <div class="team-item-image" style="background-image: url(<?php echo $featured_image ? $featured_image : gid() . '/placeholder.jpg' ?>)"></div>
+            <div class="team-item-content">
+              <h2><?php echo $member->post_title ?></h2>
+              <?php if ($title) { ?>
+              <p><?php echo $title ?></p>
+              <?php } ?>
             </div>
+          </div>
           <?php } ?>
         </div>
       </section>

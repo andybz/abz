@@ -10,21 +10,10 @@ function boost_scripts() {
 	wp_deregister_script( 'wp-embed' );
 
 	// Deregister the jquery version bundled with WordPress.
-	// if woocommerce is installed and is a woocommerce respective page, allow jquery
-	// if ( function_exists('is_woocommerce') && (is_woocommerce() || is_cart() || is_checkout() || is_account_page()) || is_page('blog')) {
-	// 	wp_dequeue_script( 'jquery' );
-	// 	wp_deregister_script( 'jquery' );
-	// 	wp_enqueue_script( 'jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js', array(), null, true );
-	// } else {
-	// 	wp_dequeue_script( 'jquery' );
-	// 	wp_deregister_script( 'jquery' );
-	// 	wp_enqueue_script( 'jquery', 'https://cdn.jsdelivr.net/npm/cash-dom@8.1.0/dist/cash.min.js', array(), null, true );
-	// }
-
 	wp_dequeue_script( 'jquery' );
 	wp_deregister_script( 'jquery' );
-	wp_enqueue_script( 'jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js', array(), null, true );
-
+	wp_enqueue_script( 'jquery', 'https://cdn.jsdelivr.net/npm/cash-dom@8.1.0/dist/cash.min.js', array(), null, true );
+	
 	// fonts - change this to whatever fonts you need
 	// wp_enqueue_style('fonts', 'https://fonts.googleapis.com/css?family=Open+Sans:400,600,600i,700,800&display=swap',  false, null);
 
@@ -33,32 +22,16 @@ function boost_scripts() {
 	wp_enqueue_script('theme-js', $theme_uri . "/build/bundle.js", ['jquery'], $theme->version, true);
 
 	boost_popup_enqueues();
-
-	//login modal
-	if (!is_user_logged_in()) {
-	  wp_localize_script( 'theme-js', 'login_form_object', array(
-	  'ajaxUrl' => admin_url( 'admin-ajax.php' ),
-		'loadingMessage' => __('Checking credentials...'),
-		'lostPassUrl' => wp_lostpassword_url()
-	  ));
-	}
-
-	wp_localize_script( 'theme-js', 'modal_object', array(
-		'logoSrc' => gid() . '/boost.svg',
-		'logoAddToCart'=> gid() . '/boost.svg'
-		));
 }
 add_action( 'wp_enqueue_scripts', 'boost_scripts', 10 );
 
-
-
 // use jquery instead of cash on gravity forms pages
-// function gform_enqueue_custom_script() {
-// 	wp_dequeue_script( 'jquery' );
-// 	wp_deregister_script( 'jquery' );
-// 	wp_enqueue_script( 'jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js', array(), null, true );
-// }
-// add_action( 'gform_enqueue_scripts', 'gform_enqueue_custom_script', 10);
+function gform_enqueue_custom_script() {
+	wp_dequeue_script( 'jquery' );
+	wp_deregister_script( 'jquery' );
+	wp_enqueue_script( 'jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js', array(), null, true );
+}
+add_action( 'gform_enqueue_scripts', 'gform_enqueue_custom_script', 10);
 
 // admin block css is in theme-setup now. uncomment add_editor_style( 'build/admin.css' ) to use
 

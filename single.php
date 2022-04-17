@@ -3,7 +3,6 @@
  * The template for displaying all single posts and attachments
  */
 
-
 add_theme_support( 'wp-block-styles' );
 
 get_header(); ?>
@@ -11,7 +10,7 @@ get_header(); ?>
 <?php while ( have_posts() ) : the_post(); ?>
 
 <?php include( locate_template( 'template-parts/single-hero.php', false, false ) );  ?>
-<main id="main_content" class="main-content-wrap" datd-router-wrapper>
+<main id="main_content" class="main-content-wrap">
   <div class="main" data-router-view="single-post-<?php echo $post->ID;?>">
     <div class="inner-wrap">
       <?php if($sidebar = false) { ?>
@@ -36,10 +35,10 @@ get_header(); ?>
           if ($terms) { ?>
           <span>|</span>
           <ul>
-            <?php 
-        
-              foreach($terms as $term) { ?>
-            <li><a href="<?php echo get_category_link($term);?>"><?php echo $term->name;?><?php echo strcmp($term->term_id, end($terms)->term_id) ? ',':'';?></a></li>
+            <?php foreach($terms as $term) { ?>
+            <li>
+              <a href="<?php echo get_category_link($term);?>"><?php echo $term->name;?><?php echo strcmp($term->term_id, end($terms)->term_id) ? ',':'';?></a>
+            </li>
             <?php } ?>
           </ul>
           <?php } ?>

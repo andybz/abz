@@ -153,6 +153,14 @@ $color-primary: #f27d23;
 	}
 }
 
+.acf-bl {
+	li {
+		&:before {
+			display: none !important;
+		}
+	}
+}
+
 .wp-block-button {
 	margin-top: 0;
 	margin-bottom: 0;

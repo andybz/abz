@@ -1,9 +1,9 @@
 <?php
   $archive_fields = get_fields(get_queried_object());
-  $horizontal_position = $archive_fields['horizontal_position'] ?? null;
-  $vertical_position = $archive_fields['vertical_position'] ?? null;
+  $horizontal_position = $archive_fields['horizontal_position'];
+  $vertical_position = $archive_fields['vertical_position'];
 
-  if ($hero_content = $archive_fields['default_hero_content'] ?? null) {
+  if ($hero_content = $archive_fields['default_hero_content']) {
     //use default_hero_content
   } else {
     if (get_queried_object()->post_title) { 

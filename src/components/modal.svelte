@@ -6,6 +6,7 @@
 	const dispatch = createEventDispatcher()
 
 	export let width = 600
+	export let backgroundColor
 	export let closeBtnColor = '#f27d23'
 
 	// bindings
@@ -51,7 +52,8 @@
 				class="svelte-modal"
 				in:fly={{ y: 10 }}
 				out:fly={{ y: -10 }}
-				bind:this={modal}>
+				bind:this={modal}
+				style={`background-color: ${backgroundColor}`}>
 				<button
 					class="close-modal"
 					on:click={closeModal}

@@ -225,82 +225,6 @@ function boost_pagination($query = null) {
 	}
 }
 
-	// Login
-	// custom rest route for security token
-	add_action( 'rest_api_init', function () {
-		register_rest_route( 'boost-api/v1', '/get-token', array(
-			'methods' => 'GET',
-			'callback' => 'boost_get_token',
-			'permission_callback' => '',
-		) );
-	} );
-	
-	function boost_get_token() {
-		ob_start();
-		wp_nonce_field( 'ajax-login-nonce', 'security' );
-		$token_field = ob_get_clean();
-		return $token_field;
-	}
-	
-	// ajax login
-	function ajax_login() {
-		// First check the nonce, if it fails the function will break
-		check_ajax_referer( 'ajax-login-nonce', 'security' );
-	
-		// Nonce is checked, get the POST data and sign user on
-		$info = array();
-		$info['user_login'] = $_POST['username'];
-		$info['user_password'] = $_POST['password'];
-		$info['remember'] = true;
-	
-		$user = wp_signon( $info, false );
-		// error_log(json_encode($user));
-		if ( is_wp_error($user) ){
-			// error
-			echo json_encode(array('loggedin'=>false, 'message'=>__('Wrong username or password.')));
-		} else {
-			// success
-			echo json_encode(array(
-				'loggedin'=>true,
-				'message'=>__('Login successful, redirecting...'),
-				// 'redirect_url' => '/member-portal/',
-			));
-		}
-		die();
-	}
-	// ajax register
-	function ajax_register() {
-		// First check the nonce, if it fails the function will break
-		check_ajax_referer( 'ajax-login-nonce', 'security' );
-	
-		// Nonce is checked, get the POST data and sign user on
-		$info = array();
-		$info['first_name'] = $_POST['firstname'];
-		$info['last_name'] = $_POST['lastname'];
-		$info['user_login'] = $_POST['email'];
-		$info['user_email'] = $_POST['email'];
-		$info['user_pass'] = $_POST['password'];
-	
-		$user_id = wp_insert_user( $info ) ;
-	
-		if ( ! is_wp_error( $user_id ) ) {
-			// success
-			wp_set_current_user($user_id);
-			wp_set_auth_cookie($user_id);
-			echo json_encode(array('loggedin'=>true, 'message'=>__('Account created successfully. Refreshing...')));
-		} else {
-			// error
-			echo json_encode(array('loggedin'=>false, 'message'=>__($user_id->get_error_message())));
-		}
-		die();
-	}
-	
-	if (!is_user_logged_in()) {
-	add_action('wp_ajax_nopriv_ajaxlogin', 'ajax_login');
-	add_action('wp_ajax_nopriv_ajaxregister', 'ajax_register');
-	}
-
-
 // Customize login
 function my_login_logo() { ?>
 <style type="text/css">
@@ -357,7 +281,6 @@ function boost_post_updated( $post_id ) {
 	}
 }
 add_action( 'acf/save_post', 'boost_post_updated' );
-
 
 // global theme options
 if( function_exists('acf_add_options_page') ) {
@@ -438,7 +361,6 @@ return implode($result);
 return esc_html($string); // The phone number isn't valid, but that's ok. Keep the original.
 }
 
-
 function encodeURIComponent($str) {
 $revert = array('%21'=>'!', '%2A'=>'*', '%27'=>"'", '%28'=>'(', '%29'=>')');
 return strtr(rawurlencode($str), $revert);
@@ -449,36 +371,77 @@ return htmlspecialchars(json_encode($str), ENT_QUOTES, 'UTF-8');
 }
 
 function boost_next_post_link($post_type = 'post', $use_svg = false) {
-$next_post = get_adjacent_post(false, '', true);
-if(!$next_post) {
-$next_post = new WP_Query("posts_per_page=1&order=DESC&post_type=$post_type&&orderby=>publish_date");
-$next_post = $next_post->the_post();
-wp_reset_query();
-}
-
+if( $next_post = get_adjacent_post(false, '', true) ) {
 $content = $use_svg ? insert_svg('arrow-right', $echo=false) . '<span class="sr-only">next post</span>' : 'Next Post ››';
-echo '<a class="next-link" href="' . get_permalink($next_post) . '" data-wenk="' . $next_post->post_title . '">'.$content.'</a>';
-}
-function boost_previous_post_link($post_type = 'post', $use_svg = false) {
-$prev_post = get_adjacent_post(false, '', false);
-if(!$prev_post) {
-$prev_post = new WP_Query("posts_per_page=1&order=ASC&post_type=$post_type&&orderby=>publish_date");
-$prev_post = $prev_post->the_post();
+echo '<a class="next-link" href="' . get_permalink($next_post) . '" data-wenk="' . get_the_title() . '">'.$content.'</a>';
+} else {
+$last = new WP_Query('posts_per_page=1&order=DESC&post_type=post'); $last->the_post();
+$content = $use_svg ? insert_svg('arrow-right', $echo=false) . '<span class="sr-only">next post</span>' : 'Next Post ››';
+echo '<a class="next-link" href="' . get_permalink($next_post) . '" data-wenk="' . get_the_title() . '">'.$content.'</a>';
 wp_reset_query();
 };
-$content = $use_svg ? insert_svg('arrow-left', $echo=false) . '<span class="sr-only">previous post</span>' : '‹‹ Previous Post';
-echo '<a class="prev-link" href="' . get_permalink($prev_post) . '" data-wenk="' . $prev_post->post_title . '">'.$content.'</a>';
+}
+
+function boost_previous_post_link($post_type = 'post', $use_svg = false) {
+if( $prev_post = get_adjacent_post(false, '', false) ) {
+$content = $use_svg ? insert_svg('arrow-left', $echo=false) . '<span class="sr-only">Previous Post</span>' : '‹‹ Previous Post';
+echo '<a class="prev-link" href="' . get_permalink($prev_post) . '" data-wenk="' . get_the_title() . '">'.$content.'</a>';
+} else {
+$first = new WP_Query('posts_per_page=1&order=ASC&post_type=post'); $first->the_post();
+$content = $use_svg ? insert_svg('arrow-left', $echo=false) . '<span class="sr-only">Previous Post</span>' : '‹‹ Previous Post';
+echo '<a class="prev-link" href="' . get_permalink($prev_post) . '" data-wenk="' . get_the_title() . '">'.$content.'</a>';
+wp_reset_query();
+};
 }
 
 // get youtube video id
 function get_youtube_id($youtube_url) {
 preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $youtube_url, $match);
 return $match[1];
-}
+};
 
 // get vimeo video id
 function get_vimeo_id($vimeo_url) {
 preg_match('/(https?:\/\/)?(www\.)?(player\.)?vimeo\.com\/([a-z]*\/)*([0-9]{6,11})[?]?.*/', $vimeo_url, $match);
 return $match[5];
-}
+};
 
+// Blocks
+// block categories
+add_filter( 'block_categories_all', function( $categories, $post ) {
+return array_merge(
+$categories,
+array(
+array(
+'slug' => 'boost-blocks',
+'title' => 'Boost Blocks',
+),
+)
+);
+}, 10, 2 );
+
+function boost_register_blocks() {
+if( ! function_exists('acf_register_block') )
+return;
+acf_register_block( array(
+'name' => 'hero-block',
+'title' => 'Hero Block',
+'render_template' => 'blocks/hero-block.php',
+'category' => 'boost-blocks',
+'icon' => 'superhero-alt',
+'mode' => 'edit',
+'keywords' => ['boost', 'hero', 'block'],
+'supports' => ['align' => false]
+));
+acf_register_block( array(
+'name' => 'buckets-block',
+'title' => 'Buckets Block',
+'render_template' => 'blocks/buckets-block.php',
+'category' => 'boost-blocks',
+'icon' => 'slides',
+'mode' => 'edit',
+'keywords' => ['boost', 'hero', 'block'],
+'supports' => ['align' => false]
+));
+}
+add_action('acf/init', 'boost_register_blocks' );

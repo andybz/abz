@@ -1,8 +1,8 @@
 <?php
 $fields = get_fields();
-$featured_image = get_the_post_thumbnail_url($post->ID, 'fp-xlarge') ?? null;
-$horizontal_position = $fields['horizontal_position'] ?? null;
-$vertical_position = $fields['vertical_position'] ?? null;
+$featured_image = get_the_post_thumbnail_url($post->ID, 'fp-xlarge');
+$horizontal_position = $fields['horizontal_position'];
+$vertical_position = $fields['vertical_position'];
 
   if ($hero_content = get_field('default_hero_content')) {
     //use default_hero_content

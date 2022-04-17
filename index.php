@@ -18,6 +18,10 @@ $args = array(
 );
 $query = new WP_Query( $args );
 
+$page_for_posts_id = get_option( 'page_for_posts' );
+$page_for_posts_obj = get_post($page_for_posts_id, ARRAY_A);
+$page_for_posts_content = $page_for_posts_obj['post_content'];
+
 get_header(); ?>
 
 <?php include( locate_template( 'template-parts/archive-hero.php', false, false ) );  ?>
@@ -26,8 +30,11 @@ get_header(); ?>
   <div class="main">
     <div class="inner-wrap">
       <div class="page-default-content clearfix">
-        <!-- class="sidebar-layout" -->
+
         <article class="main-content">
+          <?php if ($page_for_posts_content) { ?>
+          <?php echo $page_for_posts_content ?>
+          <?php } ?>
           <div class="grid-two">
             <?php while ( have_posts() ) : the_post(); 
             $categories = get_the_category(); $cat_arr = [];

@@ -38,6 +38,7 @@ get_header(); ?>
   <h1 class="sr-only">Locations</h1>
   <noscript>Please enable JavaScript to view Locations</noscript>
   <section class="locations-wrap" id="locations_wrap" data-locations="<?php echo data_attribute($locations) ?>"></section>
+  <?php the_content() ?>
 </main>
 
 <?php endwhile;?>

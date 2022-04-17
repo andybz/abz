@@ -4,7 +4,6 @@ import home from './routes/home'
 import team from './routes/team'
 import locations from './routes/locations'
 import blog from './routes/blog'
-import singleProduct from './routes/singleProduct'
 
 /**
  * Populate Router instance with DOM routes
@@ -21,8 +20,6 @@ const routes = new Router({
 	locations,
 	/** Blog/Posts page */
 	blog,
-	/** Single Product page */
-	singleProduct,
 })
 
 /** Load Events */

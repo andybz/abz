@@ -24,7 +24,6 @@
             'theme_location' => 'Primary Navigation'
           ) );
         ?>
-
       </nav>
     </div>
   </div>

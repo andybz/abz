@@ -9,11 +9,9 @@
 
 add_theme_support( 'wp-block-styles' );
 
- get_header(); ?>
+get_header(); ?>
 
 <?php while ( have_posts() ) : the_post(); ?>
-
-<?php include( locate_template( 'template-parts/hero.php', false, false ) );  ?>
 
 <main id="main_content" class="main-content-wrap">
   <div class="main">

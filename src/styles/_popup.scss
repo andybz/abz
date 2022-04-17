@@ -13,7 +13,7 @@
 	}
 	.btn {
 		position: relative;
-		margin: 1.2em 0 0;
+		margin: 1.2em auto 0;
 		&:before {
 			content: '';
 			position: absolute;
@@ -129,9 +129,9 @@
 	top: 10px;
 	left: 11px;
 }
-.modal-inner {
-	background: #fff;
-}
+// .modal-inner {
+// 	background: #fff;
+// }
 .popup-wrap {
 	max-height: 90vh;
 	overflow: auto;
