@@ -110,7 +110,7 @@ if (!('customElements' in window)) {
 </script>
 
 <?php wp_footer(); ?>
-
+ 
 <?php if ($footer_code = $option_fields['footer_code']) {
   // additional footer code for analytics and whatnot
   echo $footer_code;
