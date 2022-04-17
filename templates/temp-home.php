@@ -19,6 +19,8 @@
 </head>
 
 <body <?php body_class(); ?>>
+<?php while ( have_posts() ) : the_post(); ?>
+<?php $option_fields = get_fields('options'); ?>
 <main id="main_content">
   <div class="main">
     <div class="inner-wrap">
@@ -127,5 +129,6 @@ if (!('customElements' in window)) {
   // additional footer code for analytics and whatnot
   echo $footer_code;
 } ?>
+<?php endwhile; ?>
 </body>
 </html>
