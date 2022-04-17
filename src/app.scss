@@ -10,7 +10,7 @@ $color-primary: #f27d23;
 	width: 100%;
 	height: 100%;
 }
-
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,700;0,900;1,400&display=swap');
 @import 'styles/util.scss';
 @import 'styles/reset.scss';
 @import 'styles/gravityforms.scss';
@@ -20,10 +20,11 @@ $color-primary: #f27d23;
 @import 'styles/archive.scss';
 @import 'styles/single.scss';
 @import 'styles/animations.scss';
-@import 'styles/contact.scss';
-@import 'styles/team.scss';
-@import 'styles/locations';
+// @import 'styles/contact.scss';
+// @import 'styles/team.scss';
+// @import 'styles/locations';
 @import 'styles/menu.scss';
 @import 'styles/components.scss';
 @import 'style.scss';
 @import 'media-queries.scss';
+@import 'styles/temp.scss';

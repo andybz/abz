@@ -10,26 +10,26 @@ const $body = $(document.body)
 export default {
 	init() {
 		// JavaScript to be fired on all pages
-		const mobileMenu = new sidePanel({
-			target: $body[0],
-			props: {
-				target: $body[0],
-				content: document.getElementById('menu'),
-				fixed: true,
-				width: 320,
-			},
-		})
-		$('#toggle_nav').on('click', mobileMenu.show)
+		// const mobileMenu = new sidePanel({
+		// 	target: $body[0],
+		// 	props: {
+		// 		target: $body[0],
+		// 		content: document.getElementById('menu'),
+		// 		fixed: true,
+		// 		width: 320,
+		// 	},
+		// })
+		// $('#toggle_nav').on('click', mobileMenu.show)
 
-		$(document).on(
-			'click',
-			'.menu-section .menu-item-has-children > a',
-			function (e) {
-				e.preventDefault()
-				let $el = $(this)
-				$el.parent().toggleClass('show-subnav')
-			}
-		)
+		// $(document).on(
+		// 	'click',
+		// 	'.menu-section .menu-item-has-children > a',
+		// 	function (e) {
+		// 		e.preventDefault()
+		// 		let $el = $(this)
+		// 		$el.parent().toggleClass('show-subnav')
+		// 	}
+		// )
 	},
 	finalize() {
 		// JavaScript to be fired on all pages, after page specific JS is fired
