@@ -39,6 +39,7 @@ body {
     pointer-events: none;
     white-space: nowrap;
 }
+
 .logo { 
     position: relative;
     display: block;
@@ -60,9 +61,9 @@ body {
   }
 h2 { 
     font-weight: 300;
-    font-size: 30px;
+    font-size: 25px;
     letter-spacing: 2px;
-    margin: 1.75rem 0;
+    margin: 0 0 2.75rem;
 }
 .btn { 
     border: 1px solid #FFF;

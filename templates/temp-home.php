@@ -122,7 +122,7 @@
 </main>
 <div id="bg-image"></div>
 <!-- bg animation -->
-<script>
+<!-- <script>
 const bg = document.querySelector('#bg-image');
 const windowWidth = window.innerWidth / 5;
 const windowHeight = window.innerHeight / 5 ;
@@ -133,7 +133,7 @@ bg.addEventListener('mousemove', (e) => {
   
   bg.style.transform = `translate3d(-${mouseX}%, -${mouseY}%, 0)`;
 });
-</script>
+</script> -->
 <!-- text animation -->
 <script>
 anime({
